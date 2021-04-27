@@ -1,5 +1,13 @@
 # Spring-Boot-Project-Management-System
 
+- JQuery
+- Thymeleaf
+- Spring Boot
+- Java 11
+- Postgresql
+- AWS
+- Docker
+
 
 - Don't forget to configure it w.r.t current computer settings.-> Go check application.properties file
 
