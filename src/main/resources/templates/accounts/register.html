@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: head">
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+</head>
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+    <form th:action="@{register/save-account}" method="POST" class="mt-5" th:object="${user}">
+        <div class="mb-3">
+            <input type="text" class="form-control" th:field="${user.userName}" placeholder="Username">
+        </div>
+
+        <div class="mb-3">
+            <input type="password" class="form-control" th:field="${user.password}" placeholder="Password">
+        </div>
+
+        <div class="mb-3">
+            <input type="text" class="form-control" th:field="${user.email}" placeholder="Email">
+        </div>
+
+        <!--        <div class="mb-3">-->
+        <!--            <input type="hidden" class="form-control" th:field="${user.enabled}" th:value="true">-->
+        <!--        </div>-->
+        <div class="mb-3">
+            <button class="btn-outline-dark btn" type="submit">Create Employee</button>
+        </div>
+
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="layouts :: head">
+    <meta charset="UTF-8">
+    <title>Projects</title>
+</head>
+<style>
+    .cst {
+        width: 65px !important;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: inline-block;
+    }
+</style>
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<div class="container mt-5">
+    <table class="table mt-3">
+        <h3>Projects</h3>
+        <span>
+            <a class="btn btn-primary"
+               href="/projects/new">Add New
+            </a>
+        </span>
+        <thead>
+        <tr>
+            <th>Project name</th>
+            <th>Project Stage</th>
+            <th>Project Count</th>
+            <th>Project Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${projects != null}" th:each="project: ${projects}">
+            <td class="col-md-2" colspan="1" th:text="${project.name}"/>
+            <td class="col-md-2" colspan="1" th:text="${project.stage}"/>
+            <td class="col-md-5" colspan="1" th:text="${project.description}"/>
+            <td class="col-md-3" colspan="2">
+                <a class="btn btn-info btn-block cst btn-sm" th:href="@{/projects/update(id=${project.projectId})}">Update</a>
+                <a class="btn btn-danger btn-block cst btn-sm"
+                   th:href="@{/projects/delete(id=${project.projectId})}"
+                   onclick="if(!(confirm('Are you sure to delete?'))) return false ">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-4">
+            <canvas id="projectChart" width="500" height="500"></canvas>
+        </div>
+
+        <div class="col-md-4">
+            <div id="timelineChart" style="height: 500px; width: 500px"></div>
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<script>
+    let projectStatusData = "[[${projectStatusCount}]]";
+    let projectTimeline = "[[${projectTimeline}]]"
+
+    function decodeHtml(html) {
+        let txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return JSON.parse(txt.value);
+    }
+
+    function projectTableDraw(chartData, chartName) {
+        if (chartData !== null) {
+            // parsing
+            chartData = decodeHtml(chartData);
+            let labels = [];
+            let counts = [];
+            for (let i = 0; i < chartData.length; i++) {
+                labels[i] = chartData[i].label;
+                counts[i] = chartData[i].count;
+            }
+
+
+            let ctx = document.getElementById(chartName).getContext('2d');
+            let myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: counts,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Project Stages"
+                    },
+                    showLabel: true,
+                    scales: {
+
+                        y: {
+                            beginAtZero: true,
+
+                        },
+                    }
+                }
+            });
+        }
+    }
+
+
+    projectTableDraw(projectStatusData, "projectChart");
+    // projectTableDraw(projectStatusData, "timelineChart");
+
+    let data = decodeHtml(projectTimeline);
+
+    google.charts.load('current', {'packages': ['timeline']});
+    google.charts.setOnLoadCallback(drawChart);
+    console.log(data[0].projectName);
+    console.log();
+    console.log(data[0].endDate);
+
+    function drawChart() {
+        let container = document.getElementById('timelineChart');
+        let chart = new google.visualization.Timeline(container);
+        let dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({type: 'string', id: 'Project Name'});
+        dataTable.addColumn({type: 'date', id: 'Start'});
+        dataTable.addColumn({type: 'date', id: 'End'});
+        for (let i = 0; i < data.length; i++) {
+            let startDate = data[i].startDate;
+            let endDate = data [i].endDate;
+            startDate = new Date(startDate);
+            endDate = new Date(endDate);
+            let startYear = startDate.getFullYear();
+            let startMonth = startDate.getMonth();
+            let startDay = startDate.getDate()
+            let endYear = endDate.getFullYear();
+            let endMonth = endDate.getMonth();
+            let endDay = endDate.getDate();
+
+            console.log(new Date(startYear, startMonth, startDay));
+            console.log(data[i].projectName);
+
+            dataTable.addRows([
+                [`${data[i].projectName}`, new Date(startYear, startMonth, startDay), new Date(endYear, endMonth, endDay)]
+            ]);
+        }
+        chart.draw(dataTable);
+    }
+</script>
+
+</html>

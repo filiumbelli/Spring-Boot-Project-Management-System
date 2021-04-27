@@ -1,0 +1,42 @@
+2021-04-26 02:41:08.790  INFO 14004 --- [restartedMain] c.s.management.ManagementApplication     : Starting ManagementApplication using Java 11.0.11 on DESKTOP-T2Q6SCS with PID 14004 (C:\Users\Serhat\Desktop\Spring Boot\cms\target\classes started by Serhat in C:\Users\Serhat\Desktop\Spring Boot\cms)
+2021-04-26 02:41:08.792 DEBUG 14004 --- [restartedMain] c.s.management.ManagementApplication     : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-04-26 02:41:08.793  INFO 14004 --- [restartedMain] c.s.management.ManagementApplication     : The following profiles are active: dev
+2021-04-26 02:41:08.835  INFO 14004 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-04-26 02:41:08.835  INFO 14004 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-04-26 02:41:09.424  INFO 14004 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-26 02:41:09.465  INFO 14004 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 2 JPA repository interfaces.
+2021-04-26 02:41:10.014  INFO 14004 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-04-26 02:41:10.022  INFO 14004 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-26 02:41:10.022  INFO 14004 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-04-26 02:41:10.087  INFO 14004 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-26 02:41:10.087  INFO 14004 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1251 ms
+2021-04-26 02:41:10.118  INFO 14004 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-04-26 02:41:10.209  INFO 14004 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-04-26 02:41:10.214  INFO 14004 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-04-26 02:41:10.333  INFO 14004 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-26 02:41:10.380  INFO 14004 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.30.Final
+2021-04-26 02:41:10.498  INFO 14004 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-04-26 02:41:10.595  INFO 14004 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-04-26 02:41:11.112  INFO 14004 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-26 02:41:11.119  INFO 14004 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-26 02:41:11.144  INFO 14004 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-26 02:41:11.421  WARN 14004 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-26 02:41:11.503  INFO 14004 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-26 02:41:11.706  INFO 14004 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2e08f1ad-ab5d-43a8-88c8-f9d472d5abb7
+
+2021-04-26 02:41:11.800  INFO 14004 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2dbd27d3, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c361a49, org.springframework.security.web.header.HeaderWriterFilter@66726ea4, org.springframework.security.web.csrf.CsrfFilter@1294b910, org.springframework.security.web.authentication.logout.LogoutFilter@5eb89fce, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@30696c40, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@669bf58a, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@35d16cad, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@712e5a59, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30bfafae, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62142f0f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36ae14dc, org.springframework.security.web.session.SessionManagementFilter@589f9f39, org.springframework.security.web.access.ExceptionTranslationFilter@68f04826, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@40916ab7]
+2021-04-26 02:41:11.872  INFO 14004 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-04-26 02:41:11.882  INFO 14004 --- [restartedMain] c.s.management.ManagementApplication     : Started ManagementApplication in 3.597 seconds (JVM running for 4.962)
+2021-04-26 02:41:12.016  INFO 14004 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-26 02:41:12.017  INFO 14004 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-26 02:41:12.018  INFO 14004 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-04-26 02:41:12.249  WARN 14004 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [200] milliseconds.
+2021-04-26 02:41:24.387 DEBUG 14004 --- [http-nio-8080-exec-6] c.s.m.logging.ApplicationLoggerAspect    : 
+
+
+
+2021-04-26 02:41:24.387 DEBUG 14004 --- [http-nio-8080-exec-6] c.s.m.logging.ApplicationLoggerAspect    : ******* Before Method Execution: ******** 
+2021-04-26 02:41:24.388 DEBUG 14004 --- [http-nio-8080-exec-6] c.s.m.logging.ApplicationLoggerAspect    : com.sofisticat.management.controllers.EmployeeController.getEmployees () with arguments[s] = [{}]
+2021-04-26 02:41:24.434 DEBUG 14004 --- [http-nio-8080-exec-6] c.s.m.logging.ApplicationLoggerAspect    :  -----  

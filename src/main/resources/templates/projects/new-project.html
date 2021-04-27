@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts :: head">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container mt-5">
+
+    <form th:object="${project}" th:action="@{/projects/save}" method="post">
+        <input type="hidden" th:field="${project.projectId}">
+
+        <!-- Name -->
+        <div class="mb-3">
+            <input th:field="${project.name}" class="form-control" type="text" placeholder="Project Name">
+        </div>
+
+        <!-- State -->
+        <div class="mb-3">
+            <select class="form-select" th:field="${project.stage}">
+                <option selected
+                        th:value="NOTSTARTED">Not Started
+                </option>
+                <option th:value="INPROGRESS">In Progress</option>
+                <option th:value="COMPLETED">Completed</option>
+            </select>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <textarea th:field="${project.description}" class="form-control" type="text"
+                      placeholder="Description"></textarea>
+        </div>
+        <!-- Employees -->
+        <div class="mb-3">
+            <select multiple="multiple" class="form-select" th:field="*{employees}">
+                <option th:each="employee : ${allEmployees}"
+                        th:value="${employee.employeeId}"
+                        th:text="${employee.firstName + ' '+ employee.lastName}">
+                </option>
+            </select>
+        </div>
+
+        Start Date:
+        <div class="mb-3">
+            <input id="startDate" type="text" th:field="${project.startDate}">
+        </div>
+        End Date:
+        <div class="mb-3">
+            <input id="endDate" type="text" th:field="${project.endDate}">
+        </div>
+        <!-- Button -->
+        <div class="mb-3">
+            <button class="btn-outline-dark btn" type="submit">Create Project</button>
+        </div>
+    </form>
+</div>
+
+</body>
+<script>
+    $(function () {
+        $("#startDate").datepicker({format: 'DD/MM/YYYY'});
+        $("#format").on("change", function () {
+            $("#datepicker").datepicker("option", "dateFormat", $(this).val());
+        });
+    });
+
+    $(function () {
+        $("#endDate").datepicker({format: 'DD/MM/YYYY'});
+        $("#format").on("change", function () {
+            $("#datepicker").datepicker("option", "dateFormat", $(this).val());
+        });
+    });
+</script>
+</html>

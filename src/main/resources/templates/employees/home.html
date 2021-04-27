@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="layouts :: head">
+    <meta charset="UTF-8">
+    <title>Employees</title>
+</head>
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<div class="container mt-5">
+    <table class="table mt-3">
+        <h3>Employees</h3>
+        <span>
+            <a class="btn btn-primary"
+               href="/employees/new">Add New
+            </a>
+        </span>
+        <thead>
+        <tr>
+            <th>Employee First name</th>
+            <th>Employee Last name</th>
+            <th>Employee Project</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:if="${employeeListProjectCount != null}" th:each="employee: ${employeeListProjectCount}">
+            <td th:text="${employee.firstName}"/>
+            <td th:text="${employee.lastName}"/>
+            <td th:text="${employee.projectCount}"></td>
+            <td>
+                <a class="btn btn-info btn-sm"
+                   th:href="@{/employees/update(id=${employee.employeeId})}">
+                    Update</a>
+                <a class="btn btn-danger btn-sm"
+                   th:href="@{/employees/delete(id=${employee.employeeId})}"
+                   onclick="if(!(confirm('Are you sure to delete?'))) return false ">
+                    Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="col-md-4">
+
+        <canvas id="myChart" width="500" height="500"></canvas>
+    </div>
+</div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">    var chartData = "[[${projectStatusCount}]]";
+if (chartData !== null) {
+    // parsing
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
+
+    chartData = decodeHtml(chartData);
+    chartData = JSON.parse(chartData);
+    var labels = [];
+    var counts = [];
+    for (var i = 0; i < chartData.length; i++) {
+        labels[i] = chartData[i].label;
+        counts[i] = chartData[i].count;
+    }
+
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '# of Votes',
+                data: counts,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Project Stages"
+            },
+            showLabel: true,
+            scales: {
+
+                y: {
+                    beginAtZero: true,
+
+                },
+            }
+        }
+    });
+}
+
+</script>
+
+</html>
